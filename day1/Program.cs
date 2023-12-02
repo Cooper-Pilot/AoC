@@ -33,7 +33,6 @@ if (part2)
 }
 foreach(var line in lines)
 {
-	System.Console.WriteLine($"line: {line}");
 	List<(int, char)> digits = [];
 	foreach((var word, var digit) in digitStrings)
 	{
@@ -52,7 +51,6 @@ foreach(var line in lines)
 	}
 	digits = digits.OrderBy(tuple => tuple.Item1).ToList();
 	string number = $"{digits.First().Item2}{digits.Last().Item2}";
-	System.Console.WriteLine($"    Number: {number}");
 	sum += int.Parse(number);
 }
 System.Console.WriteLine(sum);

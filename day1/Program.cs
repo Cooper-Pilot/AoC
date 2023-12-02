@@ -3,43 +3,56 @@ var part2 = false;
 if (args.Length > 0 && args[0] == "2")
 	part2 = true;
 int sum = 0;
-List<(string, char)> digitWords =
+List<(string, char)> digitStrings =
 [
-	("one",	 	'1'),
-	("two",	 	'2'),
-	("three",	'3'),
-	("four",	'4'),
-	("five",	'5'),
-	("six",	 	'6'),
-	("seven",	'7'),
-	("eight",	'8'),
-	("nine",	'9'),
+	("0", '0'),
+	("1", '1'),
+	("2", '2'),
+	("3", '3'),
+	("4", '4'),
+	("5", '5'),
+	("6", '6'),
+	("7", '7'),
+	("8", '8'),
+	("9", '9'),
 ];
+if (part2)
+{
+	digitStrings.AddRange([
+		("zero", 	'0'),
+		("one",	 	'1'),
+		("two",	 	'2'), 
+		("three",	'3'),
+		("four",	'4'),
+		("five",	'5'),
+		("six",	 	'6'),
+		("seven",	'7'),
+		("eight",	'8'),
+		("nine",	'9'),
+	]);
+}
 foreach(var line in lines)
 {
+	System.Console.WriteLine($"line: {line}");
 	List<(int, char)> digits = [];
-	if (part2)
+	foreach((var word, var digit) in digitStrings)
 	{
-		foreach((var word, var digit) in digitWords)
+		int index = 0;
+		while(true)
 		{
-			int index = 0;
-			while((index = line[index..].IndexOf(word)) != -1)
-			{
-				digits.Add((index, digit));
-				index++;
-				if (index >= line.Length)
-					break;
-			}
+			int relIndex = line[index..].IndexOf(word);
+			if (relIndex == -1)
+				break;
+			index += relIndex;
+			digits.Add((index, digit));
+			index++;
+			if (index >= line.Length)
+				break;
 		}
-	}
-	for (int i = 0; i < line.Length; i++)
-	{
-		var c = line[i];
-		if (char.IsDigit(c))
-			digits.Add((i, c));
 	}
 	digits = digits.OrderBy(tuple => tuple.Item1).ToList();
 	string number = $"{digits.First().Item2}{digits.Last().Item2}";
+	System.Console.WriteLine($"    Number: {number}");
 	sum += int.Parse(number);
 }
 System.Console.WriteLine(sum);

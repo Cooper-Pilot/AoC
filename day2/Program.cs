@@ -1,36 +1,50 @@
 ﻿var lines = File.ReadAllLines("input");
-//starting part2
+var part2 = false;
+if (args.Length > 0 && args[0] == "2")
+	part2 = true;
 Dictionary<string, int> maxCubes = new()
 {
 	{"red", 12},
 	{"green", 13},
 	{"blue", 14},
 };
-var idSum = 0;
+var sum = 0;
 foreach(var line in lines)
 {
 	var game = line.Split(':');
 	var id = game[0].Split(' ')[1];
 	var rounds = game[1].Split(';');
 	bool gamePossible = true;
+	Dictionary<string, int> max = new()
+	{
+		{"red", 0},
+		{"green", 0},
+		{"blue", 0},
+	};
 	foreach(var round in rounds)
 	{
 		var colors = round.Split(',');
 		foreach(var color in colors)
 		{
 			var colorSplit = color.Trim().Split(' ');
-			var count = colorSplit[0];
+			var count = int.Parse(colorSplit[0]);
 			var name = colorSplit[1];
-			if (int.Parse(count) > maxCubes[name])
+			max[name] = Math.Max(max[name], count);
+			if (!part2 && count > maxCubes[name])
 			{
 				gamePossible = false;
 				break;
 			}
 		}
-		if (!gamePossible)
+		if (!part2 && !gamePossible)
 			break;
 	}
-	if (gamePossible)
-		idSum += int.Parse(id);
+	if (part2)
+	{
+		var product = max["red"] * max["green"] * max["blue"];
+		sum += product;
+	}
+	else if (gamePossible)
+		sum += int.Parse(id);
 }
-System.Console.WriteLine(idSum);
+System.Console.WriteLine(sum);

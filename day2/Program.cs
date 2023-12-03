@@ -1,7 +1,8 @@
 ﻿var lines = File.ReadAllLines("input");
+//starting part2
 Dictionary<string, int> maxCubes = new()
 {
-	{"red", 12 },
+	{"red", 12},
 	{"green", 13},
 	{"blue", 14},
 };

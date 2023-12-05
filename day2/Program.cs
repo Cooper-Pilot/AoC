@@ -1,5 +1,6 @@
 ﻿var lines = File.ReadAllLines("input");
 var part2 = false;
+// test
 if (args.Length > 0 && args[0] == "2")
 	part2 = true;
 Dictionary<string, int> maxCubes = new()

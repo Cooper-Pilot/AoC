@@ -24,6 +24,7 @@ if (!aocDays.ContainsKey(day))
     throw new ArgumentException($"First arg \"{day}\" err: day does not exist");
 if (part < 1 || part > 2)
     throw new ArgumentException($"Second arg \"{part}\" must be 1 or 2");
+Console.WriteLine($"Starting day {day} part {part}");
 aocDays[day].Run(part);
 }
 catch (ArgumentException e)

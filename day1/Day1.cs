@@ -1,6 +1,5 @@
-﻿var lines = File.ReadAllLines("input.txt");
-var part2 = false;
-if (args.Length > 0 && args[0] == "2")
+﻿public class Day1 : AocDay { public override void Run(int part) { var lines = File.ReadAllLines("input.txt");var part2 = false;
+if (part == 2)
 	part2 = true;
 int sum = 0;
 List<(string, char)> digitStrings =
@@ -54,3 +53,4 @@ foreach(var line in lines)
 	sum += int.Parse(number);
 }
 System.Console.WriteLine(sum);
+}}

@@ -1,8 +1,11 @@
-﻿var lines = File.ReadAllLines("input");
-var part2 = false;
-// test
-if (args.Length > 0 && args[0] == "2")
-	part2 = true;
+﻿public class Day2 : AocDay
+{
+	public override void Run(int part)
+	{
+		bool part2 = false;
+		if (part == 2)
+		    part2 = true;
+var lines = File.ReadAllLines("input");
 Dictionary<string, int> maxCubes = new()
 {
 	{"red", 12},
@@ -49,3 +52,5 @@ foreach(var line in lines)
 		sum += int.Parse(id);
 }
 System.Console.WriteLine(sum);
+	}
+}

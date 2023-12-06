@@ -6,7 +6,7 @@
 		bool part2 = false;
 		if (part == 2)
 			part2 = true;
-		var lines = File.ReadAllLines("input");
+		var lines = File.ReadAllLines("day2/input");
 		Dictionary<string, int> maxCubes = new()
 {
 	{"red", 12},

@@ -3,7 +3,7 @@
     public override int GetDay() => 1;
     public override void Run(int part)
 	{
-		var lines = File.ReadAllLines("input.txt");
+		var lines = File.ReadAllLines("day1/input");
 		var part2 = false;
 		if (part == 2)
 			part2 = true;

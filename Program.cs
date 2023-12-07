@@ -9,7 +9,15 @@ from assembly in AppDomain.CurrentDomain.GetAssemblies()
 foreach(var type in types)
 {
     if (Activator.CreateInstance(type) is AocDay aocDay)
-        aocDays.Add(aocDay.GetDay(), aocDay);
+    {
+        var _day = aocDay.GetDay();
+        if (aocDays.TryGetValue(_day, out var foundDay))
+        {
+            Console.Error.WriteLine($"Duplicate GetDay() returns detected: \"{_day}\" from {foundDay.GetType().Name} and {aocDay.GetType().Name}");
+            return;
+        }
+        aocDays.Add(_day, aocDay);
+    }
 }
 int day = 1, part = 1;
 try

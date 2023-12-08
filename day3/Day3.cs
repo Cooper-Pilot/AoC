@@ -5,6 +5,7 @@ public class Day3 : AocDay
     public override int GetDay() => 3;
     public override void Run(int part)
 	{
+        Dictionary<(int x, int y), Gear> gears = new();
         var lines = File.ReadAllLines("day3/input");
         int length = 0;
         List<Location> locations = new();
@@ -43,14 +44,43 @@ public class Day3 : AocDay
                         var locLine = lines[loc.y];
                         var str = locLine[loc.x .. (loc.x + loc.length)];
                         var num = int.Parse(str);
-                        sum += num;
-                        goto NextLocation;
+                        if (part == 1)
+                        {
+                            sum += num;
+                            goto NextLocation;
+                        }
+                        if (part == 2 && c == '*')
+                        {
+                            var gearLoc = (x,y);
+                            if (gears.TryGetValue(gearLoc, out var gear))
+                            {
+                                gear.ratio *= num;
+                                gear.numCount++;
+                            }
+                            else
+                                gears.Add(gearLoc, new(num, 1));
+                        }
                     }
                 }
                 NextLocation:;
             }
         }
-        Console.WriteLine(sum);
+        if (part == 1)
+            Console.WriteLine(sum);
+        if (part == 2)
+        {
+            foreach(var gear in gears.Values)
+            {
+                if (gear.numCount == 2)
+                    sum += gear.ratio;
+                //Console.WriteLine($"x:{pos.x},y:{pos.y},r:{ratio}");
+            }
+            Console.WriteLine(sum);
+        }
     }
 }
 public record Location(int length, int x, int y);
+public class Gear(int ratio, int numCount)
+{
+    public int ratio = ratio, numCount = numCount;
+}

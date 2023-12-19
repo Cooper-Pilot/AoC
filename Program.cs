@@ -10,7 +10,7 @@ foreach(var type in types)
 {
     if (Activator.CreateInstance(type) is AocDay aocDay)
     {
-        var _day = aocDay.GetDay();
+        var _day = aocDay.Day;
         if (aocDays.TryGetValue(_day, out var foundDay))
         {
             Console.Error.WriteLine($"Duplicate GetDay() returns detected: \"{_day}\" from {foundDay.GetType().Name} and {aocDay.GetType().Name}");

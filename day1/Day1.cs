@@ -1,6 +1,6 @@
 ﻿public class Day1 : AocDay
 {
-    public override int GetDay() => 1;
+    public override int Day => 1;
     public override void Run(int part)
 	{
 		var lines = File.ReadAllLines("day1/input");

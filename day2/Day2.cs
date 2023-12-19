@@ -1,6 +1,6 @@
 ﻿public class Day2 : AocDay
 {
-    public override int GetDay() => 2;
+    public override int Day => 2;
     public override void Run(int part)
 	{
 		bool part2 = false;

@@ -2,7 +2,7 @@ using System.Text;
 
 public class Day3 : AocDay
 {
-    public override int GetDay() => 3;
+    public override int Day => 3;
     public override void Run(int part)
 	{
         Dictionary<(int x, int y), Gear> gears = new();

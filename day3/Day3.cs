@@ -80,7 +80,13 @@ public class Day3 : AocDay
     }
 }
 public record Location(int length, int x, int y);
-public class Gear(int ratio, int numCount)
+public class Gear
 {
-    public int ratio = ratio, numCount = numCount;
+    public int ratio, numCount;
+
+    public Gear(int ratio, int numCount)
+    {
+        this.ratio = ratio;
+        this.numCount = numCount;
+    }
 }

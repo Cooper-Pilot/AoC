@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Runtime.InteropServices;
-Dictionary<int, AocDay> aocDays = [];
+Dictionary<int, AocDay> aocDays = new();
 var types =
 from assembly in AppDomain.CurrentDomain.GetAssemblies()
     from type in assembly.GetTypes()

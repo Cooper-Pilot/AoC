@@ -8,8 +8,8 @@
 		if (part == 2)
 			part2 = true;
 		int sum = 0;
-		List<(string, char)> digitStrings =
-		[
+		List<(string, char)> digitStrings = new()
+		{
 			("0", '0'),
 	        ("1", '1'),
 	        ("2", '2'),
@@ -20,10 +20,10 @@
 	        ("7", '7'),
 	        ("8", '8'),
 	        ("9", '9'),
-        ];
+		};
 		if (part2)
 		{
-			digitStrings.AddRange([
+			var range = new List<(string, char)>{
 				("zero",    '0'),
 		        ("one",     '1'),
 		        ("two",     '2'),
@@ -34,11 +34,13 @@
 		        ("seven",   '7'),
 		        ("eight",   '8'),
 		        ("nine",    '9'),
-	        ]);
+			};
+			
+			digitStrings.AddRange(range);
 		}
 		foreach (var line in lines)
 		{
-			List<(int, char)> digits = [];
+			List<(int, char)> digits = new();
 			foreach ((var word, var digit) in digitStrings)
 			{
 				int index = 0;

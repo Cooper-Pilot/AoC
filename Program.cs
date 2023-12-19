@@ -1,4 +1,4 @@
-﻿Dictionary<int, AocDay> aocDays = [];
+﻿Dictionary<int, AocDay> aocDays = new();
 var types =
     from assembly in AppDomain.CurrentDomain.GetAssemblies()
     from type in assembly.GetTypes()
@@ -9,7 +9,7 @@ foreach (var type in types)
     AocDay aocDay = (AocDay)Activator.CreateInstance(type)!;
     try
     {
-        var _day = aocDay.GetDay();
+        var _day = aocDay.Day;
         if (aocDays.TryGetValue(_day, out var foundDay))
         {
             Console.Error.WriteLine($"Duplicate GetDay() returns detected: \"{_day}\" from {foundDay.GetType().Name} and {aocDay.GetType().Name}");
@@ -19,7 +19,7 @@ foreach (var type in types)
     }
     catch (NotImplementedException)
     {
-        Console.Error.WriteLine($"\"{type.Name}\" has not implemented \"{nameof(aocDay.GetDay)}\", skipping...");
+        Console.Error.WriteLine($"\"{type.Name}\" has not implemented \"{nameof(aocDay.Day)}\", skipping...");
     }
 }
 int day = 1, part = 1;

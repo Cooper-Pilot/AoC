@@ -2,7 +2,7 @@ using System.Text;
 
 public class Day3 : AocDay
 {
-    public override int GetDay() => 3;
+    public override int Day => 3;
     public override void Run(int part)
 	{
         Dictionary<(int x, int y), Gear> gears = new();
@@ -80,7 +80,13 @@ public class Day3 : AocDay
     }
 }
 public record Location(int length, int x, int y);
-public class Gear(int ratio, int numCount)
+public class Gear
 {
-    public int ratio = ratio, numCount = numCount;
+    public int ratio, numCount;
+
+    public Gear(int ratio, int numCount)
+    {
+        this.ratio = ratio;
+        this.numCount = numCount;
+    }
 }

@@ -3,7 +3,7 @@ namespace AoC.Day4;
 public class Day4 : AocDay
 {
     List<int> cardValues = new();
-    public override int GetDay() => 4;
+    public override int Day => 4;
     public override void Run(int part)
 	{
         var lines = File.ReadAllLines("day4/input");

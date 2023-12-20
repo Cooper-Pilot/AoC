@@ -1,4 +1,4 @@
-﻿Dictionary<int, AocDay> aocDays = new();
+Dictionary<int, AocDay> aocDays = new();
 var types =
     from assembly in AppDomain.CurrentDomain.GetAssemblies()
     from type in assembly.GetTypes()
@@ -38,7 +38,8 @@ try
     Console.WriteLine($"Starting day {day} part {part}");
     aocDays[day].Run(part);
 }
-catch (ArgumentException e)
+catch (Exception e) when (e is NotImplementedException || 
+                          e is ArgumentException)
 {
     Console.Error.WriteLine(e.Message);
 }
